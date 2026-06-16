@@ -4,11 +4,28 @@
 
 ## 项目简介
 
+
+
 本项目基于阿里云天池公开数据集《UserBehavior》，完成从原始数据到数据仓库四层模型（ODS → DWD → DWS → ADS）的搭建，并使用 Python、Pandas、SQLite 实现用户行为分析、用户画像构建和运营指标统计。
 
 项目模拟互联网电商公司的离线数仓开发流程，涵盖数据清洗、指标计算、用户分层、商品分析和数据库建模等核心内容。
 
 ---
+## 项目架构
+
+UserBehavior.csv
+↓
+ODS
+↓
+DWD
+↓
+DWS
+↓
+ADS
+↓
+SQLite
+↓
+Streamlit Dashboard
 
 ## 数据集介绍
 

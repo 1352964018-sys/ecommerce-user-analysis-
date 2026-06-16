@@ -1,79 +1,156 @@
+import streamlit as st
 import pandas as pd
-import matplotlib.pyplot as plt
 import os
 
-os.makedirs("../charts", exist_ok=True)
-
-dws = pd.read_csv("../dws/dws_user_profile.csv")
-
-level_count = dws["user_level"].value_counts()
-plt.rcParams["font.sans-serif"] = ["SimHei"] # 设置Matplotlib字体为SimHei，以正确显示中文
-plt.rcParams["axes.unicode_minus"] = False # 关闭坐标轴unicode负号渲染，解决负数'-'变成方框乱码
-#用户分层饼图
-plt.figure(figsize=(8,6))
-plt.pie(
-    level_count,
-    labels=level_count.index,
-    autopct="%1.1f%%"
+st.set_page_config(
+    page_title="淘宝用户行为分析",
+    layout="wide"
 )
-plt.title("User Segmentation")
-plt.savefig(
-    "../charts/user_level.png"
-)
-plt.show()
 
-#Top 10 商品排行榜
+# =====================
+# 路径
+# =====================
+project_root = os.path.dirname(
+    os.path.dirname(__file__)
+)
+
+dws_path = os.path.join(
+    project_root,
+    "dws",
+    "dws_user_profile.csv"
+)
+
+ads_item_path = os.path.join(
+    project_root,
+    "ads",
+    "ads_top_item.csv"
+)
+
+ads_category_path = os.path.join(
+    project_root,
+    "ads",
+    "ads_top_category.csv"
+)
+
+ads_conversion_path = os.path.join(
+    project_root,
+    "ads",
+    "ads_conversion.csv"
+)
+
+# =====================
+# 读取数据
+# =====================
+dws = pd.read_csv(dws_path)
+
 ads_item = pd.read_csv(
-    "../ads/ads_top_item.csv"
+    ads_item_path
 )
-top10 = ads_item.head(10)
-plt.figure(figsize=(10,6))
-plt.bar(
-    top10["item_id"].astype(str),
-    top10["cnt"]
-)
-plt.xticks(rotation=45)
-plt.title("Top10 Item Ranking")
-plt.tight_layout()
-plt.savefig(
-    "../charts/top10_item.png"
-)
-plt.show()
 
-#Top10品类排行榜
 ads_category = pd.read_csv(
-    "../ads/ads_top_category.csv"
+    ads_category_path
 )
-top10 = ads_category.head(10)
-plt.figure(figsize=(10,6))
-plt.bar(
-    top10["category_id"].astype(str),
-    top10["cnt"]
-)
-plt.xticks(rotation=45)
-plt.title("Top10 Category Ranking")
-plt.tight_layout()
-plt.savefig(
-    "../charts/top10_category.png"
-)
-plt.show()
 
-#转化率图
 ads_conversion = pd.read_csv(
-    "../ads/ads_conversion.csv"
+    ads_conversion_path
 )
-rate = ads_conversion[
-    "conversion_rate"
-].iloc[0]
-plt.figure(figsize=(6,4))
-plt.bar(
-    ["Conversion Rate"],
-    [rate]
+
+# =====================
+# 标题
+# =====================
+st.title("🛒 淘宝用户行为分析 Dashboard")
+
+st.title("🛒 Ecommerce User Analysis Dashboard")
+
+# =====================
+# KPI指标
+# =====================
+
+total_users = len(dws)
+
+buyer_users = len(
+    dws[dws["buy_count"] > 0]
 )
-plt.title(
-    f"Conversion Rate {rate:.2%}"
+
+conversion_rate = buyer_users / total_users
+
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    st.metric(
+        "总用户数",
+        f"{total_users:,}"
+    )
+
+with col2:
+    st.metric(
+        "购买用户数",
+        f"{buyer_users:,}"
+    )
+
+with col3:
+    st.metric(
+        "转化率",
+        f"{conversion_rate:.2%}"
+    )
+
+
+# =====================
+# 用户分层
+# =====================
+st.subheader("用户分层分布")
+
+user_level = dws["user_level"].value_counts()
+
+st.bar_chart(user_level)
+
+
+
+# =====================
+# TOP10商品
+# =====================
+st.subheader("Top10 商品排行榜")
+
+top10_item = ads_item.head(10)
+
+st.dataframe(top10_item)
+
+# =====================
+# TOP10品类
+# =====================
+st.subheader("Top10 品类排行榜")
+
+top10_category = ads_category.head(10)
+
+st.dataframe(top10_category)
+
+# =====================
+# 明细表
+# =====================
+st.subheader("用户画像样例")
+
+st.dataframe(
+    dws.head(20)
 )
-plt.savefig(
-    "../charts/conversion_rate.png"
+
+
+
+
+st.sidebar.title("筛选条件")
+
+level = st.sidebar.selectbox(
+    "用户等级",
+    ["全部"] +
+    list(dws["user_level"].unique())
 )
-plt.show()
+
+if level != "全部":
+    filtered = dws[
+        dws["user_level"] == level
+    ]
+else:
+    filtered = dws
+
+st.write(
+    f"当前用户数：{len(filtered)}"
+)
