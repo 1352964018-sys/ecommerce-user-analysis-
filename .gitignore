@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.pyc
+
+# Virtual Environment
+.venv/
+
+# VSCode
+.vscode/
+
+# Dataset
+data/
+
+# Warehouse
+ods/
+dwd/
+dws/
+ads/
+
+# Database
+db/
+*.db
+
+# Charts
+charts/
+
+# Jupyter
+.ipynb_checkpoints/
