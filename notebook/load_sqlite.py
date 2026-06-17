@@ -13,15 +13,20 @@ db_path = os.path.join(db_dir, "ecommerce.db")
 
 # 连接数据库
 conn = sqlite3.connect(db_path)
-print(f"数据库创建成功：{db_path}")
+print("数据库创建成功：", db_path)
 
-# =========================
-# DWD
-# =========================
-dwd_path = os.path.join(project_root, "dwd", "dwd_user_behavior.csv")
-dwd = pd.read_csv(dwd_path)
-dwd.to_sql("dwd_user_behavior", conn, if_exists="replace", index=False)
-print("DWD导入成功")
+
+
+
+# # =========================
+# # DWD
+# # =========================
+# print("开始读取DWD...")
+# dwd_path = os.path.join(project_root, "dwd", "dwd_user_behavior.csv")
+# dwd = pd.read_csv(dwd_path)
+# print("DWD读取完成")
+# dwd.to_sql("dwd_user_behavior", conn, if_exists="replace", index=False)
+# print("DWD导入成功")
 
 # =========================
 # DWS
