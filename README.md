@@ -50,19 +50,20 @@ ODS → DWD → DWS → ADS
 
 ### 数据概览
 
-（放 dashboard_home.png）
+![Dashboard Home](charts/dashboard_home.png)
 
 ### 用户分析
 
-（放 dashboard_user.png）
+![Dashboard User](charts/dashboard_user.png)
 
 ### 商品分析
 
-（放 dashboard_item.png）
+![Dashboard Item](charts/dashboard_item.png)
+![Dashboard Item](chartsdashboard_item (2).png)
 
 ### 转化分析
 
-（放 dashboard_conversion.png）
+![Dashboard Conversion](charts/dashboard_conversion.png)
 
 ---
 
