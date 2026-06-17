@@ -56,10 +56,12 @@ ODS → DWD → DWS → ADS
 
 ![Dashboard User](charts/dashboard_user.png)
 
-### 商品分析
+### Top10商品排行
 
 ![Dashboard Item](charts/dashboard_item.png)
-![Dashboard Item](chartsdashboard_item (2).png)
+
+### Top10品类排行
+![Dashboard Item](dashboard_category.png)
 
 ### 转化分析
 
