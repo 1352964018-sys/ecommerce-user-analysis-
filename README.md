@@ -61,7 +61,7 @@ ODS → DWD → DWS → ADS
 ![Dashboard Item](./charts/dashboard_item.png)
 
 ### Top10品类排行
-![Dashboard Item](./dashboard_category.png)
+![Dashboard Item](./charts/dashboard_category.png)
 
 ### 转化分析
 
