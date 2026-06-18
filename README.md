@@ -50,22 +50,22 @@ ODS → DWD → DWS → ADS
 
 ### 数据概览
 
-![Dashboard Home](charts/dashboard_home.png)
+![Dashboard Home](./charts/dashboard_home.png)
 
 ### 用户分析
 
-![Dashboard User](charts/dashboard_user.png)
+![Dashboard User](./charts/dashboard_user.png)
 
 ### Top10商品排行
 
-![Dashboard Item](charts/dashboard_item.png)
+![Dashboard Item](./charts/dashboard_item.png)
 
 ### Top10品类排行
-![Dashboard Item](dashboard_category.png)
+![Dashboard Item](./dashboard_category.png)
 
 ### 转化分析
 
-![Dashboard Conversion](charts/dashboard_conversion.png)
+![Dashboard Conversion](./charts/dashboard_conversion.png)
 
 ---
 
