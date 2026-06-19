@@ -67,6 +67,12 @@ ODS → DWD → DWS → ADS
 
 ![Dashboard Conversion](./charts/dashboard_conversion.png)
 
+### Spark Version
+
+为了展示大数据处理流程，项目同时提供 PySpark 版本的数据仓库实现：
+ODS → DWD → DWS → ADS
+由于本项目主要演示离线数仓设计与 DataFrame API，Spark 模块未在当前仓库环境完整运行验证，与 Pandas 版本保持一致的数据处理逻辑。
+
 ---
 
 ## 项目成果
